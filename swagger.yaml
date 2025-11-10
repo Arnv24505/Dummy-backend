@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Dummy Backend API
+  version: "1.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/v1/users:
+    get:
+      summary: Get list of users
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+  /api/v1/users/{id}:
+    get:
+      summary: Get user by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200': { description: OK }
+    put:
+      summary: Update user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json: {}
+      responses: { '200': { description: Updated } }
+    delete:
+      summary: Delete user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses: { '200': { description: Deleted } }
+
+  /api/v1/products:
+    get:
+      summary: Get products
+      responses: { '200': { description: OK } }
+    post:
+      summary: Create product
+      requestBody:
+        content:
+          application/json: {}
+      responses: { '201': { description: Created } }
+  /api/v1/products/{id}:
+    get:
+      summary: Get product by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+    put:
+      summary: Update product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: Updated } }
+    delete:
+      summary: Delete product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: Deleted } }
+
+  /api/v1/auth/login:
+    post:
+      summary: Mock login (email)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses: { '200': { description: OK } }
+
+  /api/v1/orders:
+    get:
+      summary: List orders
+      responses: { '200': { description: OK } }
+    post:
+      summary: Create order
+      requestBody:
+        content:
+          application/json: {}
+      responses: { '201': { description: Created } }
+
+  /api/v1/stats:
+    get:
+      summary: Get simple stats
+      responses: { '200': { description: OK } }
+
+  /api/v1/wishlist/{productId}/toggle:
+    post:
+      summary: Toggle wishlist for product for a user
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json: {}
+      responses: { '200': { description: OK } }
